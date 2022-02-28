@@ -12,13 +12,16 @@ const config = require('./config')
 const expressJWT = require('express-jwt')
 
 //托管静态资源文件
-app.use('/uploads',express.static('/uploads'))
+app.use('/uploads', express.static('/uploads'))
 
-//配置cors中间件
+//配置cors中间件 解决跨域问题
 const cors = require('cors')
 app.use(cors())
 
 //配置用来解析服务器提交的 urlencoded格式的数据的中间件
+/* 
+    解析body不是node.js默认提供的，你需要载入body-parser中间件才可以使用req.body
+*/
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -64,8 +67,8 @@ const artCateRouter = require('./router/artcate')
 app.use('/my/article', artCateRouter)
 
 //导入文章的路由模块
-const articleRouter=require('./router/article')
-app.use('/my/article',articleRouter)
+const articleRouter = require('./router/article')
+app.use('/my/article', articleRouter)
 
 //定义全局错误中间件
 //注意：在express中，不能调用两次res.send()，否则会报错

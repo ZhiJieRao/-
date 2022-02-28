@@ -39,7 +39,7 @@ exports.addArticleCates = (req, res) => {
         if (results.length === 1 && results[0].alias === req.body.alias) { return res.cc('分类名被占用，请更换后重试！') }
 
         //定义新增文章分类的sql
-        const sql = 'insert into ev_article_cate set ?'//?????？？？？？？？？？？？？？PPT第51张 
+        const sql = 'insert into ev_article_cate set ?'
         db.query(sql, req.body, (err, results) => {
             //SQL语句执行失败
             if (err) { return res.cc(err) }
